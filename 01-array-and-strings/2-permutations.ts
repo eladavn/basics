@@ -7,10 +7,6 @@ function isPermutation(a : string, b : string ) : boolean {
     }
 
     let occurencesPerChar : number[] = new Array<number>(128).fill(0);
-    for (let i=0;i<occurencesPerChar.length;i++) {
-        occurencesPerChar[i] = 0;
-    }
-    
 
     for( let i:number =0; i<a.length; i++) {
         occurencesPerChar[a[i].charCodeAt(0)]++;
