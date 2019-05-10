@@ -111,3 +111,5 @@ assert.equal(cut.getCount(),3);
 
 cut.detach(cut.nodeAt(1));
 assert.equal(cut.getCount(),2);
+assert.equal(cut.head!.item,1);
+assert.equal(cut.tail!.item,3);
