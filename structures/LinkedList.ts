@@ -29,6 +29,17 @@ export class LinkedList<T> {
         }
     }
 
+    toArray() : T[] {
+        let result: Array<T> = new Array<T>();
+
+        for (let currNode:Node<T> | undefined= this.head; currNode; currNode = currNode.next) {
+            result.push(currNode.item);
+        }
+
+        return result;
+
+    }
+
     getCount() : number {
         
         let counter = 0;
@@ -92,15 +103,9 @@ export class LinkedList<T> {
 }
 
 let cut : LinkedList<number> = new LinkedList<number>([1,2,3]);
-let currNode : Node<number> | undefined = cut.head;
-for (let counter =1; counter<=3; counter++) {
-    assert.equal(currNode!.item, counter);
-    currNode = currNode!.next;
-}
+assert.deepEqual(cut.toArray(), [1,2,3]);
 
-assert.equal(currNode, undefined);
-
-currNode = cut.tail;
+let currNode = cut.tail;
 for (let counter=3; counter>0; counter--) {
     assert.equal(currNode!.item, counter);
     currNode = currNode!.prev;

@@ -1,8 +1,10 @@
+import * as assert from 'assert';
 import {LinkedList, Node} from '../structures/LinkedList';
 
-function removeDups(list : LinkedList<string>) {
+
+function removeDups(list : LinkedList<string>) : LinkedList<string> {
     let currNode : Node<string> | undefined = list.head;
-    let foundItems : object = {};
+    let foundItems : any = {};
     while(currNode) {
 
         let nextNode : Node<string> | undefined = currNode.next;
@@ -16,4 +18,20 @@ function removeDups(list : LinkedList<string>) {
 
         currNode = nextNode;
     }
+
+    return list;
 }
+
+function test(a:string[], b:string[]) {
+    let list : LinkedList<string>  = new LinkedList<string>(a);
+    removeDups(list);
+    let result: string[] = list.toArray();
+
+    assert.deepEqual(result, b);
+}
+
+test([],[]);
+test(['a'],['a']);
+test(['a','a'],['a']);
+test(['a','b','b','a'],['a','b']);
+test(['a','a','b','b','c','c'],['a','b','c']);
