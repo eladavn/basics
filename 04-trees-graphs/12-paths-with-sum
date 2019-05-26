@@ -1,0 +1,36 @@
+import {BinaryTreeNode} from {'../structures/BinaryTreeNode'};
+
+function getOccurencesFromLast(arr : number[], targetSum: number) {
+    
+    let result : number = 0;
+    let currSum : number = 0;
+    for (let counter = arr.length -1; counter >=0; counter ++) {
+        currSum += arr[counter];
+
+        if (currSum === targetSum) {
+            result++;
+        }
+
+    }
+
+    return result;
+}
+
+function itterateEnd2EndPaths(node: BinaryTreeNode<number>, targetSum: number, pathFromRoot : number[]) : number {
+    pathFromRoot.concat(node!.value);
+
+    let occurencesFromHereToRoot : number = getOccurencesFromLast(pathFromRoot, targetSum);
+
+    let occurenceLeft : number = 0;
+    if (node.left) {
+        occurenceLeft = itterateEnd2EndPaths(node.left, targetSum, pathFromRoot)        
+    }
+
+    let occurenceRight : number = 0;
+    if (node.right) {
+        occurenceRight = itterateEnd2EndPaths(node.right, targetSum, pathFromRoot)        
+    }    
+
+    return occurencesFromHereToRoot + occurenceInLeft + occurenceInRight;
+    
+}
