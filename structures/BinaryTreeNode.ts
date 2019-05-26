@@ -29,4 +29,16 @@ assert.equal(cut.value,3);
 cut.value = 4;
 assert.equal(cut.value,4);
 
-let tree = [3,[5,[7,9]],[7]];
+let tree = BinaryTreeNode.fromArray([3]);
+assert.equal(tree.value,3);
+assert.equal(tree.left,undefined);
+assert.equal(tree.right,undefined);
+
+tree = BinaryTreeNode.fromArray([3,[5],[7]]);
+assert.equal(tree.left!.value,5);
+assert.equal(tree.right!.value,7);
+
+tree = BinaryTreeNode.fromArray([3,[5],[7,undefined,[9]]]);
+assert.equal(tree.right!.value,7);
+assert.equal(tree.right!.left,undefined);
+assert.equal(tree.right!.right!.value,9);
