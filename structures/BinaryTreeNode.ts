@@ -8,12 +8,12 @@ export class BinaryTreeNode<T> {
     static fromArray<T>(arr : any[]) : BinaryTreeNode<T> {
 
         let root  = new BinaryTreeNode(arr[0] as T);
-        if (arr[1]) {
-            root.left = this.fromArray(arr[1]);
+        if (arr.length >1 && arr[1]) {
+            root.left = this.fromArray(arr[1] as Array<any>);
         }
 
-        if (arr[2]) {
-            root.right = this.fromArray(arr[2]);
+        if (arr.length >2 && arr[2]) {
+            root.right = this.fromArray(arr[2] as Array<any>);
         }
         
         return root;
